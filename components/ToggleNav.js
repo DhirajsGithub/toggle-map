@@ -6,11 +6,12 @@ import { Feather } from "@expo/vector-icons";
 import { AppContext } from "../store/app-context";
 import colors from "../refs/colors";
 
-const ToggleNav = () => {
+const ToggleNav = ({ handleToggleToApp }) => {
   const ctx = useContext(AppContext);
 
   const handleTogglePress = () => {
     ctx.toggleMode();
+    handleToggleToApp(!ctx.isDark);
   };
   const handleNavigationPress = () => {
     alert("Navigation will be added soon !!!");

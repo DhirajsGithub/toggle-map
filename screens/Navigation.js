@@ -1,12 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { AppContext } from "../store/app-context";
+import colors from "../refs/colors";
 
 const Navigation = () => {
+  const ctx = useContext(AppContext);
   return (
-    <View>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: ctx.isDark ? colors.lightBlack : colors.white },
+      ]}
+    >
       <SafeAreaView>
-        <Text>Navigation</Text>
+        <Text style={{ color: ctx.isDark ? colors.white : colors.black }}>
+          Navigation
+        </Text>
       </SafeAreaView>
     </View>
   );
@@ -14,4 +24,10 @@ const Navigation = () => {
 
 export default Navigation;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

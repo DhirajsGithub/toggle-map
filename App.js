@@ -18,11 +18,10 @@ import { useContext, useEffect, useState } from "react";
 import colors from "./refs/colors";
 
 export default function App() {
-  const ctx = useContext(AppContext);
-  const [isDark, setIsDark] = useState("false");
-  useEffect(() => {
-    setIsDark(ctx.isDark);
-  }, [isDark, ctx]);
+  const [isDark, setIsDark] = useState(false);
+  const handleToggleToApp = (data) => {
+    setIsDark(data);
+  };
   return (
     <AppContextProvider>
       <StatusBar style={isDark ? colors.white : colors.black} />
@@ -44,7 +43,7 @@ export default function App() {
                   style={{ bottom: focused ? 15 : null }}
                   name="compass"
                   size={focused ? 50 : 38}
-                  color={ctx.isDark && "white"}
+                  color={isDark ? "white" : "black"}
                 />
               ),
             }}
@@ -91,7 +90,7 @@ export default function App() {
               ),
             }}
             name="add"
-            component={Add}
+            children={() => <Add handleToggleToApp={handleToggleToApp} />}
           />
           <Tab.Screen
             options={{

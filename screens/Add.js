@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, { Marker } from "react-native-maps";
 import places from "../refs/places";
@@ -7,12 +7,12 @@ import HeaderComp from "../components/HeaderComp";
 import ToggleNav from "../components/ToggleNav";
 import { AppContext } from "../store/app-context";
 
-const Add = () => {
+const Add = ({ handleToggleToApp }) => {
   const ctx = useContext(AppContext);
   return (
     <View style={styles.container}>
       <HeaderComp />
-      <ToggleNav />
+      <ToggleNav handleToggleToApp={handleToggleToApp} />
       <MapView
         userInterfaceStyle={ctx.isDark ? "dark" : "light"}
         style={styles.map}
